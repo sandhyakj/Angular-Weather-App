@@ -1,0 +1,32 @@
+<nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
+    <ul class="nav navbar-nav" >
+      <ng-container  *ngFor="let navitem of navitems$ | async; index as i">
+        <li class="nav-item" routerLinkActive="active" [routerLink]="[navitem.url]" *ngIf="!navitem.children;else dropdown">
+          <a class="nav-link">
+            <div class="d-flex flex-row">
+              <div class="p-2"><i [class]="navitem.icon"></i></div><div class="p-2">{{navitem.name}}</div>
+            </div>
+          </a>
+        </li>
+        <ng-template #dropdown>
+          <li class="nav-item" >
+            <a class="nav-link">
+              <div class="d-flex flex-row">
+                <div class="p-2"><i [class]="navitem.icon"></i></div><div class="p-2">{{navitem.name}}</div>
+              </div>
+            </a>
+            <ul class="navbar-nav">
+              <li [routerLink]="[navchilditem.url]" routerLinkActive="active" *ngFor="let navchilditem of navitem.children" class="nav-item submenuitem" routerLinkActive="active">
+                <a class="nav-link">
+                  <div class="d-flex flex-row">
+                    <div class="p-2"><i [class]="navchilditem.icon"></i></div><div class="p-2">{{navchilditem.name}}</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+      </ng-container>     
+    </ul>
+  </nav>
+ 
