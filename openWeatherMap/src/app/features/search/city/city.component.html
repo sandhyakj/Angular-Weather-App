@@ -1,6 +1,6 @@
 <div *ngIf="cities.length">
     <p-panel header="Weather By City">
-        <p-dropdown styleClass="col-md-3" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [filter]="true" filterBy="name"
+        <p-dropdown styleClass="col-lg-6 col-md-12 col-sm-12 col-xs-12" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [filter]="true" filterBy="name"
             [virtualScroll]="true" [itemSize]="50" [showClear]="true" placeholder="Select a City"
             (ngModelChange)="displayWeather($event)">
             <ng-template pTemplate="selectedItem">
@@ -16,32 +16,32 @@
         </p-dropdown>
 
         <div class="row" *ngIf="selectedCityWeather">
-            <p-card class="col-md-3 m-2" [header]="selectedCityWeather.name">
+            <p-card class="col-lg-6 col-md-12 col-sm-12 col-xs-12" [header]="selectedCityWeather.name">
                 <div class="col-md-12">
                     <img alt="Qries" [src]=getImgUrl(selectedCityWeather.weather[0].icon)>
                     {{selectedCityWeather.weather[0].description | titlecase}}
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Country</div>
                     <div class="col-md-6">{{selectedCityWeather.sys.country}}</div>
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Temperature</div>
                     <div class="col-md-6">{{selectedCityWeather.main.temp}} ℃</div>
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Feels Like</div>
                     <div class="col-md-6">{{selectedCityWeather.main.feels_like}} ℃</div>
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Min Temperature</div>
                     <div class="col-md-6">{{selectedCityWeather.main.temp_min}} ℃</div>
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Max Temperature</div>
                     <div class="col-md-6">{{selectedCityWeather.main.temp_max}} ℃</div>
                 </div>
-                <div class="col-md-12 d-flex">
+                <div class="row">
                     <div class="col-md-6">Humidity</div>
                     <div class="col-md-6">{{selectedCityWeather.main.humidity}} %</div>
                 </div>

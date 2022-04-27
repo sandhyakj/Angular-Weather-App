@@ -1,32 +1,32 @@
-    <p-panel header="Weather in Major Cities">
+    <p-panel header="Current Weather in Major Cities">
         <div class="row" > 
             <ng-container *ngFor="let cityweather of majorCitiesWeather$ | async; index as i">
-                <p-card class="col-md-3 m-2" [header]="cityweather.name">
+                <p-card class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2" [header]="cityweather.name">
                     <div class="col-md-12">
                         <img alt="Qries" [src]=getImgUrl(cityweather.weather[0].icon)>
                         {{cityweather.weather[0].description |  titlecase}}
                     </div>
-                     <div class="col-md-12 d-flex">
+                    <div class="row">
                          <div class="col-md-6">Country</div>
                          <div class="col-md-6">{{cityweather.sys.country}}</div>
                      </div>
-                     <div class="col-md-12 d-flex">
+                     <div class="row">
                         <div class="col-md-6">Temperature</div>
                         <div class="col-md-6">{{cityweather.main.temp}} ℃</div>
                     </div>
-                    <div class="col-md-12 d-flex">
+                    <div class="row">
                         <div class="col-md-6">Feels Like</div>
                         <div class="col-md-6">{{cityweather.main.feels_like}} ℃</div>
                     </div>
-                    <div class="col-md-12 d-flex">
+                    <div class="row">
                         <div class="col-md-6">Min Temperature</div>
                         <div class="col-md-6">{{cityweather.main.temp_min}} ℃</div>
                     </div>
-                    <div class="col-md-12 d-flex">
+                    <div class="row">
                         <div class="col-md-6">Max Temperature</div>
                         <div class="col-md-6">{{cityweather.main.temp_max}} ℃</div>
                     </div>
-                    <div class="col-md-12 d-flex">
+                    <div class="row">
                         <div class="col-md-6">Humidity</div>
                         <div class="col-md-6">{{cityweather.main.humidity}} %</div>
                     </div>
