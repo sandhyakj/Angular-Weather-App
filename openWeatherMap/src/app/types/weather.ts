@@ -19,22 +19,22 @@ interface main {
 interface wind {
     speed: number;
     deg: number;
+    gust?:number;
 }
 
 interface clouds {
     all: number;
-    deg: number;
 }
 
 interface sys {
     type: number;
     id: number;
-    message: number;
+    message?: number;
     country:string;
     sunrise: number;
     sunset: number;
 }
-
+ 
 export interface weather
 {
     coord:latlong;
@@ -43,12 +43,12 @@ export interface weather
     main: main;
     visibility: number;
     wind:wind;
+    rain?:any;
     clouds:clouds;
     dt:number;
     sys: sys;
     timezone:number;
     id:number;
     name:string;
-    cod:string;
-    imgurl:string;
+    cod:number;
 }

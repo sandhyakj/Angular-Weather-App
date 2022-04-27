@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { catchError, forkJoin, from, map, mergeMap, Observable, of, tap, toArray } from 'rxjs';
 import { WeatherService } from 'src/app/services/weather.service';
 import { city, weather } from 'src/app/types';
@@ -8,7 +8,7 @@ import { city, weather } from 'src/app/types';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private weatherService:WeatherService) { }
   majorCitiesWeather$!: Observable<any>;
@@ -18,7 +18,9 @@ export class DashboardComponent implements OnInit {
     this.majorCitie$ = this.weatherService.getMajorCities();
     this.majorCitiesWeather$ = this.getWeather().pipe();
   }
-
+  
+  ngOnDestroy(): void{}
+  
   getWeather(){
     return this.majorCitie$.pipe(
       // first map all the observales make an array for API calls
@@ -44,7 +46,4 @@ export class DashboardComponent implements OnInit {
     return this.weatherService.getCurrentWeatherByLatlong(city.coord);
   }
 
-  getImgUrl(icon:string){
-    return `http://openweathermap.org/img/wn/${icon}@2x.png`;
-  }
 }

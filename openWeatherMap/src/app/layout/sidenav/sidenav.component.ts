@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { NavItem } from 'src/app/types/navitem';
 import { SidenavService  } from '../../services/sidenav.service';
@@ -8,7 +8,7 @@ import { SidenavService  } from '../../services/sidenav.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
   navitems$!: Observable<NavItem[]>;
   constructor(public sideNavService: SidenavService) { }
 
@@ -17,5 +17,7 @@ export class SidenavComponent implements OnInit {
       map( (navitems) =>navitems)
     );
   }
+
+  ngOnDestroy(): void{}
 
 }

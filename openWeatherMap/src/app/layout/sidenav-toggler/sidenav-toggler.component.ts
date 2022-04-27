@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
@@ -6,11 +6,12 @@ import { SidenavService } from '../../services/sidenav.service';
   templateUrl: './sidenav-toggler.component.html',
   styleUrls: ['./sidenav-toggler.component.scss']
 })
-export class SidenavTogglerComponent implements OnInit {
+export class SidenavTogglerComponent implements OnInit, OnDestroy {
 
   constructor(public sideNavService: SidenavService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void{}
 
 }

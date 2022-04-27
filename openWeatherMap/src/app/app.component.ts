@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -6,9 +6,14 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(private primengConfig: PrimeNGConfig) {}
-  ngOnInit() {
+export class AppComponent implements OnInit, OnDestroy{
+
+  constructor(public primengConfig: PrimeNGConfig) {}
+
+  ngOnInit(): void {
     this.primengConfig.ripple = true;
   }
+
+  ngOnDestroy(): void{}
+
 }

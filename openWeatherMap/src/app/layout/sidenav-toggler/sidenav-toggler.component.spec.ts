@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SidenavTogglerComponent } from './sidenav-toggler.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 describe('SidenavTogglerComponent', () => {
   let component: SidenavTogglerComponent;
@@ -8,7 +9,11 @@ describe('SidenavTogglerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavTogglerComponent ]
+      declarations: [ SidenavTogglerComponent ],
+      imports: [
+        HttpClientTestingModule 
+      ],
+      providers:[SidenavService]
     })
     .compileComponents();
   });
@@ -22,4 +27,14 @@ describe('SidenavTogglerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle sidenav', () => {
+    let sidenavservice = TestBed.inject(SidenavService);
+    let spy = spyOn(sidenavservice, 'toggleSideNav').and.callThrough();
+    const hostElement: HTMLElement = fixture.nativeElement;
+    const buttonElement: HTMLButtonElement = hostElement.querySelector('button')!;
+    buttonElement.click();
+    expect(spy).toHaveBeenCalled();
+  });
+
 });

@@ -29,6 +29,8 @@ export class CityComponent implements OnInit, OnDestroy {
       ).subscribe();
   }
   
+  ngOnDestroy(): void{}
+
   displayWeather(event: city){
     if(event){
       this.getWeatherForCity(event).pipe(
@@ -43,15 +45,7 @@ export class CityComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(){
-
-  }
-
   getWeatherForCity(city:city){
     return this.weatherService.getCurrentWeatherByLatlong(city.coord);
-  }
-
-  getImgUrl(icon:string){
-    return `http://openweathermap.org/img/wn/${icon}@2x.png`;
   }
 }

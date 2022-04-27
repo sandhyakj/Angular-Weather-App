@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {OverlayPanel} from "primeng/overlaypanel";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 declare var google: any;
 
@@ -9,11 +7,11 @@ declare var google: any;
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.scss']
 })
-export class GoogleMapComponent implements OnInit {
+export class GoogleMapComponent implements OnInit, OnDestroy {
     
     constructor() {}
   
-    ngOnInit(): void {
-  
-    }
+    ngOnInit(): void {}
+
+    ngOnDestroy(): void{}
 }

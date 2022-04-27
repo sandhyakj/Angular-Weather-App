@@ -1,0 +1,31 @@
+    <p-card [header]="cityweather.name">
+        <div class="col-md-12">
+            <img alt="Qries" [src]=getImgUrl(cityweather.weather[0].icon)>
+            {{cityweather.weather[0].description | titlecase}}
+        </div>
+        <div class="row">
+             <div class="col-md-6">Country</div>
+             <div class="col-md-6">{{cityweather.sys.country}}</div>
+         </div>
+         <div class="row">
+            <div class="col-md-6">Temperature</div>
+            <div class="col-md-6">{{cityweather.main.temp}} ℃</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Feels Like</div>
+            <div class="col-md-6">{{cityweather.main.feels_like}} ℃</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Min Temperature</div>
+            <div class="col-md-6">{{cityweather.main.temp_min}} ℃</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Max Temperature</div>
+            <div class="col-md-6">{{cityweather.main.temp_max}} ℃</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Humidity</div>
+            <div class="col-md-6">{{cityweather.main.humidity}} %</div>
+        </div>
+    </p-card>
+
