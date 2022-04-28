@@ -4,6 +4,9 @@
             <h6 class="text-danger">{{errormessage}}</h6>
         </div>
         <ng-container  *ngIf="cities.length;else loadingcities">
+            <ng-container *ngIf="selectedCityWeather">
+                <app-legend></app-legend>
+            </ng-container>
             <p-dropdown styleClass="col-lg-6 col-md-12 col-sm-12 col-xs-12" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [filter]="true" filterBy="name"
             [virtualScroll]="true" [itemSize]="50" [showClear]="true" placeholder="Select a City"
             (ngModelChange)="displayWeather($event)">
@@ -21,7 +24,7 @@
 
         <div class="row">
             <div *ngIf="!loading;else loadingweather"></div>
-            <div *ngIf="selectedCityWeather;" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4" >
+            <div *ngIf="selectedCityWeather" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4" >
                 <app-weather [cityweather]="selectedCityWeather"></app-weather>
             </div>
         </div>

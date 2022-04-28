@@ -1,0 +1,35 @@
+.legend-div{
+    display:flex;
+    max-width:550px;
+    float:right;
+    margin:15px;
+    flex-direction:column;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .legend-div{
+        flex-direction:column;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .legend-div{
+        flex-direction:row;
+    }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .legend-div{
+        flex-direction:row;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    .legend-div{
+        flex-direction:row;
+    }
+}

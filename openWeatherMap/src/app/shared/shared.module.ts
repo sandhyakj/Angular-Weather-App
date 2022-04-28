@@ -5,9 +5,11 @@ import {DropdownModule} from 'primeng/dropdown';
 import { WeatherComponent } from './weather/weather.component';
 import { CommonModule } from '@angular/common';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { LegendComponent } from './legend/legend.component';
 @NgModule({
     declarations: [
-    WeatherComponent
+    WeatherComponent,
+    LegendComponent
   ],
     imports: [
         PanelModule,
@@ -16,7 +18,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
         CommonModule,
         ProgressSpinnerModule
     ],
-    exports:[PanelModule, CardModule,DropdownModule,  ProgressSpinnerModule, WeatherComponent],
+    exports:[PanelModule, CardModule,DropdownModule,  ProgressSpinnerModule, WeatherComponent, LegendComponent],
     providers: []
   })
   export class SharedModule { }

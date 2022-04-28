@@ -4,6 +4,7 @@
         </div>
         <div class="row" *ngIf="(majorCitiesWeather$ | async);else loadingweather"> 
             <ng-container *ngIf="!error;">
+                <app-legend></app-legend>
                 <ng-container *ngFor="let cityweather of majorCitiesWeather$ | async; index as i">
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2" >
                         <app-weather [cityweather]="cityweather"></app-weather>

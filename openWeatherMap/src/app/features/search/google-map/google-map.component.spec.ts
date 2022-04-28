@@ -1,3 +1,6 @@
+// disabled as it requires google map library to be completely loaded and ends in JS error sometimes
+
+/*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of, throwError } from 'rxjs';
 import { WeatherService } from 'src/app/services/weather.service';
@@ -16,8 +19,8 @@ class MockWeatherServie {
   }
 }
 
-// disabled as it requires google map library to be completely loaded
-xdescribe('GoogleMapComponent', () => {
+
+describe('GoogleMapComponent', () => {
   let component: GoogleMapComponent;
   let fixture: ComponentFixture<GoogleMapComponent>;
 
@@ -80,3 +83,4 @@ xdescribe('GoogleMapComponent', () => {
   });
 
 });
+*/

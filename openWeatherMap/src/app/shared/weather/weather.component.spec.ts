@@ -84,4 +84,41 @@ describe('WeatherComponent', () => {
     expect(imgelement.src).toBe("http://openweathermap.org/img/wn/01d@2x.png");
   });
 
+  describe('should have right background based on temperature', () => {
+    it('very cool', () => {
+      component.cityweather.main.temp = 8;
+      component.ngOnChanges();
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(component.colorclass).toEqual('verycool');
+    });
+
+    it('cool', () => {
+      component.cityweather.main.temp = 18;
+      component.ngOnChanges();
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(component.colorclass).toEqual('cool');
+    });
+
+    it('hot', () => {
+      component.cityweather.main.temp = 28;
+      component.ngOnChanges();
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(component.colorclass).toEqual('hot');
+    });
+
+    it('very hot', () => {
+      component.cityweather.main.temp = 38;
+      component.ngOnChanges();
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(component.colorclass).toEqual('veryhot');
+    });
+
+    it('extreme hot', () => {
+      component.cityweather.main.temp = 48;
+      component.ngOnChanges();
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(component.colorclass).toEqual('extremehot');
+    });
+
+  });
 });

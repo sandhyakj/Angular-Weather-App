@@ -1,8 +1,10 @@
 <div class="container-fluid mt-4">
     <p-panel header="Current Weather by Location">
         <div class="row">
-            <h6>Enter or choose a location on the map to see weather</h6>
-            <input class="m-2 col-md-4" id="searchField" size="50" type="text" pInputText [(ngModel)]="searchField" autocomplete="on"/>
+            <app-legend ></app-legend>
+        </div>
+        <div class="row">
+            <input class="row mb-2" id="searchField" size="50" type="text" placeholder="Enter or choose a location on the map to see weather" pInputText [(ngModel)]="searchField" autocomplete="on"/>
             <div class="col-md-8">
                 <google-map
                 #map
@@ -24,7 +26,7 @@
                 </map-marker>
               </google-map>
             </div>
-            <div class="col-md-4 p-2 pos-rel" >
+            <div class="col-md-4 px-2 pos-rel" >
                 <ng-container *ngIf="(markers.length && markers[0].info);else loading">
                     <app-weather [cityweather]="markers[0].info"></app-weather>
                 </ng-container>
