@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidenavTogglerComponent } from './sidenav-toggler.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('SidenavTogglerComponent', () => {
   let component: SidenavTogglerComponent;
@@ -13,7 +14,10 @@ describe('SidenavTogglerComponent', () => {
       imports: [
         HttpClientTestingModule 
       ],
-      providers:[SidenavService]
+      providers:[SidenavService],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     })
     .compileComponents();
   });

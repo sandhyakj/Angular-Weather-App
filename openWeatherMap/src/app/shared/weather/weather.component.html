@@ -1,4 +1,4 @@
-    <p-card [header]="cityweather.name">
+    <p-card [header]="cityweather.name" [styleClass]="colorclass">
         <div class="col-md-12">
             <img alt="Qries" [src]=getImgUrl(cityweather.weather[0].icon)>
             {{cityweather.weather[0].description | titlecase}}

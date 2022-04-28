@@ -14,7 +14,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview'; 
 import {SharedModule} from '../../shared/shared.module'; 
-
+import {GoogleMapsModule } from '@angular/google-maps'
 @NgModule({
   declarations: [
     SearchComponent,
@@ -33,7 +33,8 @@ import {SharedModule} from '../../shared/shared.module';
         DialogModule,
         ButtonModule,
         TabViewModule,
-        SharedModule
+        SharedModule,
+        GoogleMapsModule
   ]
 })
 export class SearchModule { }

@@ -15,7 +15,7 @@ export class CityComponent implements OnInit, OnDestroy {
   cities:city[] = [];
   selectedCityWeather!: weather;
 
-  constructor(private weatherService:WeatherService) { }
+  constructor(public weatherService:WeatherService) { }
 
   ngOnInit(): void {
       this.weatherService.getCities().pipe(

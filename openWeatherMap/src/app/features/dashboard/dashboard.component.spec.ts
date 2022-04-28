@@ -5,6 +5,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 import { city, weather, latlong } from 'src/app/types';
 
 import { DashboardComponent } from './dashboard.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const majorCities: city[] = [
   {"id": 2643743, "name": "London", "state": "", "country": "GB", "coord": {"lon": -0.12574, "lat": 51.50853}},
@@ -45,6 +46,9 @@ describe('DashboardComponent', () => {
       ],
       providers: [
         {provide: WeatherService, useClass: MockWeatherServie}
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ],
     })
     .compileComponents();

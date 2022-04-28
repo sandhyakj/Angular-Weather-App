@@ -1,6 +1,38 @@
 <div class="container-fluid mt-4">
     <p-panel header="Google Map">
-            Under Construction
+        <div class="row">
+            <h6>Choose a location on the map to see weather</h6>
+            <div class="col-md-8">
+                <google-map
+                #map
+                height="400px"
+                width="100%"
+                [zoom]="zoom"
+                [center]="center"
+                [options]="options"
+                (mapClick)="click($event)"
+              >
+                <map-marker
+                  #markerElem
+                  *ngFor="let marker of markers"
+                  [position]="marker.position"
+                  [label]="marker.label"
+                  [title]="marker.title"
+                  [options]="marker.options"
+                >
+                </map-marker>
+              </google-map>
+            </div>
+            <div class="col-md-4 p-2" *ngIf="markers.length && markers[0].info">
+                <app-weather [cityweather]="markers[0].info"></app-weather>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">   
+                <button id="zoomin" class="btn btn-primary m-2" (click)="zoomIn()">Zoom in</button>
+                <button id="zoomout" class="btn btn-primary m-2" (click)="zoomOut()">Zoom out</button>
+            </div>
+        </div>
+        
     </p-panel>
 </div>
-

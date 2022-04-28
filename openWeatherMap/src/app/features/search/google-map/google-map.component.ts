@@ -1,17 +1,82 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-declare var google: any;
-
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core'; 
+import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
+import { retry, take, tap } from 'rxjs';
+import { WeatherService } from 'src/app/services/weather.service';
+import { weather } from 'src/app/types';
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.scss']
 })
 export class GoogleMapComponent implements OnInit, OnDestroy {
-    
-    constructor() {}
+  @ViewChild(GoogleMap, { static: false }) map!: GoogleMap;
+  @ViewChild(MapInfoWindow, { static: false }) info!: MapInfoWindow;
+  @ViewChild(MapMarker, { static: false }) markerElem!: MapMarker;
+
+  zoom = 12;
+  center!: google.maps.LatLngLiteral;
+  options: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    mapTypeId: 'hybrid',
+    maxZoom: 15,
+    minZoom: 1,
+  }
+  markers:any = [];
+  infoContent!:weather;
+
+    constructor(public weatherService:WeatherService) { 
+    }
   
-    ngOnInit(): void {}
+    ngOnInit(): void {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        }
+        this.addMarker(position.coords.latitude, position.coords.longitude)
+      });
+    }
 
     ngOnDestroy(): void{}
+
+    zoomIn() {
+      if (this.options.maxZoom && (this.zoom < this.options.maxZoom)) this.zoom++;
+    }
+  
+    zoomOut() {
+      if (this.options.minZoom && (this.zoom > this.options.minZoom)) this.zoom--;
+    }
+
+    click(event: google.maps.MapMouseEvent) {
+      if(event.latLng){
+        this.addMarker(event.latLng.toJSON().lat, event.latLng.toJSON().lng);
+      }      
+    }
+
+    addMarker(lat:number, lng:number) {
+      this.markers = [];
+      this.weatherService.getCurrentWeatherByLatlong({lat:lat,lon:lng}).pipe(
+        take(1),
+        retry(2),
+        tap((weatherinfo:weather) =>{
+          this.markers.push({
+            position: {
+              lat: weatherinfo.coord.lat,
+              lng: weatherinfo.coord.lon,
+            },
+            label: {
+              color: 'white',
+              text: weatherinfo.name,
+            },
+            title: weatherinfo.name,
+            info: weatherinfo,
+            options: {
+              animation: google.maps.Animation.DROP,
+            },
+          });
+        })
+      ).subscribe();
+    }
 }
