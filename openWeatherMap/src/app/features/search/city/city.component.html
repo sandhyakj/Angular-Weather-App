@@ -1,6 +1,10 @@
-<div *ngIf="cities.length">
+<div>
     <p-panel header="Current Weather By City">
-        <p-dropdown styleClass="col-lg-6 col-md-12 col-sm-12 col-xs-12" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [filter]="true" filterBy="name"
+        <div class="row" *ngIf="error">
+            <h6 class="text-danger">{{errormessage}}</h6>
+        </div>
+        <ng-container  *ngIf="cities.length;else loadingcities">
+            <p-dropdown styleClass="col-lg-6 col-md-12 col-sm-12 col-xs-12" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [filter]="true" filterBy="name"
             [virtualScroll]="true" [itemSize]="50" [showClear]="true" placeholder="Select a City"
             (ngModelChange)="displayWeather($event)">
             <ng-template pTemplate="selectedItem">
@@ -15,11 +19,24 @@
             </ng-template>
         </p-dropdown>
 
-        <div class="row" *ngIf="selectedCityWeather">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4" >
+        <div class="row">
+            <div *ngIf="!loading;else loadingweather"></div>
+            <div *ngIf="selectedCityWeather;" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4" >
                 <app-weather [cityweather]="selectedCityWeather"></app-weather>
             </div>
         </div>
+        </ng-container>
     </p-panel>
-
 </div>
+<ng-template #loadingcities>
+    <div>
+        <div>Loading Cities .... </div>
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</ng-template>
+<ng-template #loadingweather>
+    <div>
+        <div>Loading Weather Information .... </div>
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</ng-template>

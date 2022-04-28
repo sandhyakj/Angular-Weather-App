@@ -9,17 +9,17 @@
         "name": "Search",
         "url": "/search",
         "icon": "pi pi-search",
-        "children": [
+        "children": [           
+            {
+                "name": "Location",
+                "url": "/search/googlemap",
+                "icon": "pi pi-map-marker"
+            },
             {
                 
                 "name": "City Name",
                 "url": "/search/city",
                 "icon": "pi pi-building"
-            },
-            {
-                "name": "Google Map",
-                "url": "/search/googlemap",
-                "icon": "pi pi-map-marker"
             }
         ]
     }

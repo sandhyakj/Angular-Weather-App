@@ -4,6 +4,7 @@ import {CardModule} from 'primeng/card';
 import {DropdownModule} from 'primeng/dropdown';
 import { WeatherComponent } from './weather/weather.component';
 import { CommonModule } from '@angular/common';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 @NgModule({
     declarations: [
     WeatherComponent
@@ -12,9 +13,10 @@ import { CommonModule } from '@angular/common';
         PanelModule,
         CardModule,
         DropdownModule,
-        CommonModule
+        CommonModule,
+        ProgressSpinnerModule
     ],
-    exports:[PanelModule, CardModule,DropdownModule, WeatherComponent],
+    exports:[PanelModule, CardModule,DropdownModule,  ProgressSpinnerModule, WeatherComponent],
     providers: []
   })
   export class SharedModule { }

@@ -13,11 +13,9 @@ export class CustomPreloadService implements PreloadingStrategy {
       var delay:number=route.data['delay']
       return timer(delay).pipe(
         mergeMap( _ => { 
-          console.log("Loading now "+ route.path);
           return loadMe() ;
         }));
     } else {
-      console.log('no preload for the path '+ route.path);
       return of(null);
     }
   }

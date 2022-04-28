@@ -1,10 +1,21 @@
     <p-panel header="Current Weather in Major Cities">
-        <div class="row" > 
-            <ng-container *ngFor="let cityweather of majorCitiesWeather$ | async; index as i">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2" >
-                    <app-weather [cityweather]="cityweather"></app-weather>
-                </div>
-            </ng-container>
+        <div class="row" *ngIf="error">
+            <h6 class="text-danger">{{errormessage}}</h6>
+        </div>
+        <div class="row" *ngIf="(majorCitiesWeather$ | async);else loadingweather"> 
+            <ng-container *ngIf="!error;">
+                <ng-container *ngFor="let cityweather of majorCitiesWeather$ | async; index as i">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2" >
+                        <app-weather [cityweather]="cityweather"></app-weather>
+                    </div>
+                </ng-container>
+            </ng-container>          
         </div>
     </p-panel>
 
+    <ng-template #loadingweather>
+        <div>
+            <div>Loading Weather Information .... </div>
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+    </ng-template>
